@@ -1,13 +1,43 @@
 # cbg-aws
+Cloud - it represents a vast networs of servers, data storage, and services that are accessible over the internate rather than being localized on a physical device or network
 
+Computing - involves processing and managing information using computers, such as running application, storaing and retrieving data , performing calculations
 
 
 Deployment models for cloud computing
 --
 When selecting a cloud strategy, a company must consider factors such as required cloud application components, preferred resource management tools, and any legacy IT infrastructure requirements.
 
+Q- Describe the three major categories of cloud services and the AWS products that are based on them ? 
+--
 The three cloud computing deployment models are public/cloud-based, private/on-premises, and hybrid. 
+public - build by service provider, not own by End user
+private - used by one individual 
+hybride - combination of public + private 
 
+services -
+Infrastucute as service IaaS - cloud service provider manages infrastucture for you, user has access through API or dashboard , provider takes care of hardware , netwirking hard divices and data storage and service
+Platform as Service PaaS - hardware and application software platform these are provided and manage by outside cloud service providers
+Software as Service SaaS - delivers software as a service, apps are web or mobile applications 
+
+Q - How do availability zone and region relayed to one anather ?
+--
+each region has multiple isolated zone known as availability zone 
+
+Q -geo-targeting in cloudfront?
+--
+we can detect the country from where end users are requesting ourcontnt this information can be pass to an origin server by the Amazon cloudFront it is sent to new HTTP header based on different countries  we can genrate different content from the different version of same contnent 
+these versions can be cached at diff locations that are closer to the end user
+
+Q - What services can be used for developing centralize logging solution?
+--
+amazon cloud watch logs which can store them in the amazon S3 and then we can use amazon elastic search to visualize them , also we can use amazon kinesis fire hose to move the data from Amazon S3 to Amazon elastic search
+
+Q - various form of virtualization offered by AWS what distinguses them from one another?
+--
+Hardware Virtual Machine (HVM) - all the virtual machine acts seperate from each other
+Paravirtualization (PV) - 
+Paravirtualization (HVM) - 
 
 Amazon Elastic Compute Cloud (Amazon EC2)
 --
@@ -25,6 +55,11 @@ You can provision and launch an Amazon EC2 instance within minutes.
 You can stop using it when you have finished running a workload.
 You pay only for the compute time you use when an instance is running, not when it is stopped or terminated.
 You can save costs by paying only for server capacity that you need or want.
+
+
+key-pair
+--
+password protected login credentials for the virtual machines that are used to prove our identity while connecting to EC2 instances 
 
 Amazon EC2 instance types
 --
@@ -177,6 +212,10 @@ High-demand period
 Throughout the day, as the number of customers increases, the coffee shop opens more registers to accommodate them. 
 
 Additionally, a coffee shop employee directs customers to the most appropriate register so that the number of requests can evenly distribute across the open registers. You can think of this coffee shop employee as a load balancer. 
+
+Auto-Scaling
+--
+as per the trafic increase the capacity 
 
 Monolithic applications and microservices
 --
