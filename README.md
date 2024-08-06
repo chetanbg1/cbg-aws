@@ -3,6 +3,32 @@ Cloud - it represents a vast networs of servers, data storage, and services that
 
 Computing - involves processing and managing information using computers, such as running application, storaing and retrieving data , performing calculations
 
+Platform - is a foundation or environment that supports teh development and operations, includes tools, frameworks, service
+
+AWS -Amazon Web Services - 
+a big collection of computer servers and services that connected to internate and hosted ny Amazon
+flexible
+
+
+Amazon EC2 - 
+Elastic Compute Cloud - provides virtual servers known as instances in the cloud it allows you to easily create and manage virtual machines to run your applications or host web site
+
+Amazon S3 - simple Storage service  - enables to store and retrieve dataa such as file, images, videos over the internate, provide high durability, availablity and security
+
+Amazon RDS - Relational Database service - manages database service that simplifies the setup, operation and scaling of ralational datbase such as mysql,oracle or sql server. it takes care of admiistrative task  such as backups and software patching allowing you to focus on application
+
+Amazaon VPC - Virtual Private Cloud - allows us to create private network within the amazon cloud, provides isolation and security for resources ans enables us to define subnets , configure routing and controls network access using security groups and network ACLs
+
+Amazon IAM - Identity Access Management - helps to manage access to AWS resources securely. it allows you to create and manage users, groups, and roles and assign fine-grained permissions to control who can access which resource
+
+AWS Lambda - lambda is serverless  computing service that enables you to run your code without provisioning or managing servers. we can upload the code andd lambda automatically handles teh infrastructure and scales it based on incoming request 
+
+Amazon SNS - Simple Notification Service - allows us to send notifications and massages to subscribed endpoints or clients. it supportes various delivery protocols, including emails, SMS, mobile push notifications, and HTTP/HTTPS endpoints
+
+Amazon cloudWatch - is a monitoring and observability service that provides insights into your AWS resources and applications. it collects and tracks metrics, monitors logs files, sets alarms and generates visualizations to help you monitor and troubleshoot your infrastucture 
+
+
+
 
 Deployment models for cloud computing
 --
@@ -56,11 +82,33 @@ You can stop using it when you have finished running a workload.
 You pay only for the compute time you use when an instance is running, not when it is stopped or terminated.
 You can save costs by paying only for server capacity that you need or want.
 
+service that lets you rent virtual computers in the cloud not physical machine 
+run our software and website or do computer related tasks without needing to own and maintain a physical server
+EC2 is fundamental service for building and running apllication in the cloud 
 
 key-pair
 --
 password protected login credentials for the virtual machines that are used to prove our identity while connecting to EC2 instances 
+EC2 use s public key cryptography which is used to encrypt and decrypt the login information
 
+
+Pricing of EC2 - 
+--
+On demand Instance -
+ what it is - renting a computer on go
+ how it works -quickly get a virtual server whenever we need it. just pay for hours nad seconds you use.
+Reserved Instance -
+ what it is - getting a subsription for a specific type of computer
+ how it works - we commit to use certain type of computer for 1 or 3 years,  we pay upfront in return we get big discount 
+Spot Instance -
+ what it is - its a bidding system for extra computers
+ how it works - you can bid for extra computers that are availble at a discount, if you bid them highest you get to use untile someone else bid higher
+Dedicated Host -
+ what it is - its like having own personal computer in cloud 
+ how it works - you get physical computer just for yourself. you decide what to put on it and have more control
+
+ 
+ 
 Amazon EC2 instance types
 --
 Amazon EC2 instance types(opens in a new tab) are optimized for different tasks. When selecting an instance type, consider the specific needs of your workloads and applications. This might include requirements for compute, memory, or storage capabilities.
@@ -216,6 +264,31 @@ Additionally, a coffee shop employee directs customers to the most appropriate r
 Auto-Scaling
 --
 as per the trafic increase the capacity 
+
+AMI Amazon Machine Image -
+--
+its a virtual image used to create a virtual machine within an EC2 instance.
+AMI in EC2 is like snapshot or template of a virtual server.
+it include operating system, application and configuration
+we use AMI to create and launch new instances in teh cloud with the same setup as the original snapshot
+it is convenient way to replicate and share a pre-configured environment
+AMI has to created manually we can capture the current state(OS, application, configuration) of running EC2 instance and we manually create a private AMI
+an AMI can be shared
+ -- choose teh AMI you want to  share
+    modifiy permissions of AMI to make it shareable, you can modify these permissions through the AWS management console, AWS command Line Interface or AWS sdk
+    provide teh AWS account IDs of AWS accounts with whom you want to share the AMI
+    if you are sharing the AMI with another AWS account, teh owner of that account must accept the sharing invitation
+
+Elastic IP - EIP
+--
+service provided by EC2 instance 
+it is basically a static IP address attached to an EC2 instance, this address is associated with your AWS account not eith an EC2 instance 
+when EC2 is restared new dynamic IP address get genrated due this the original link is not available between the website and EC2 instance  - to overcome such situation an EIP or static IP address is used which does not change
+we can create 5 EIPs 
+
+Stopping EC2  - means shutting down the instance, it corresponding EBS volume is still attached to an EC2 instance, so you can restart the instance anytime
+terminating EC2 - means removing the instance from the AWS acconut 
+
 
 Monolithic applications and microservices
 --
@@ -589,25 +662,48 @@ With Amazon S3, you pay only for what you use. You can choose from a range of st
 How often you plan to retrieve your data
 How available you need your data to be
 
+why S3 - Data Backup and Stroage  - secure backup of important files, ensuring data durability and accessibility
+Static website Hosting - - making it globally accessible
+Data Archiving - Archive and preserve data for ling term storage with cost efficiency 
+Content Distribution - distribute content globally 
+Data Transfer - facilitate secure data transfer between AWS services and region supporting seamless integration
+Data Analytics -large data set can analize using services like Amazon Athena
+Application and software distribution - 
+Log Storage  - store and manages log files generated by AWS services, easy to tracj activities
+
+S3 features - 
+Durability and Availability - provides  99.99999999999% durability of objects overa given years
+Scalability - scales seamlessly to accommodate any amount of data
+Security - multiple layers of security access control ,encryption and identity management
+Events and Notification - set up event notifications to trigger actions or workflows in response to change in your S3 buckets
+
+
+key terminologies of S3 -
+--
+Buckets - big folder , organize your data into buckets, much like orgnizing files into folders in computer
+Objects - individual file stored within bucket , eg photos, vidios, documnets, or any digital file 
+key - unique identifiers for objets in buckets, each object has a key similar to a file path 
+
+Storage classes Avaible in S3
 **S3 Standard
 -
-Designed for frequently accessed data
+Designed for frequently accessed data 
 Stores data in a minimum of three Availability Zones
 Amazon S3 Standard provides high availability for objects. This makes it a good choice for a wide range of use cases, such as websites, content distribution, and data analytics. Amazon S3 Standard has a higher cost than other storage classes intended for infrequently accessed data and archival storage.
+low latency
 
 **S3 Standard-Infrequent Access (S3 Standard-IA)
 -
 Ideal for infrequently accessed data
 Similar to Amazon S3 Standard but has a lower storage price and higher retrieval price
 Amazon S3 Standard-IA is ideal for data infrequently accessed but requires high availability when needed. Both Amazon S3 Standard and Amazon S3 Standard-IA store data in a minimum of three Availability Zones. Amazon S3 Standard-IA provides the same level of availability as Amazon S3 Standard but with a lower storage price and a higher retrieval price.
-
+low cost , 
 
 S3 One Zone-Infrequent Access (S3 One Zone-IA)
 -
 Stores data in a single Availability Zone
 Has a lower storage price than Amazon S3 Standard-IA
 Compared to S3 Standard and S3 Standard-IA, which store data in a minimum of three Availability Zones, S3 One Zone-IA stores data in a single Availability Zone. This makes it a good storage class to consider if the following conditions apply:
-
 You want to save costs on storage.
 You can easily reproduce your data in the event of an Availability Zone failure.
 
@@ -620,9 +716,7 @@ In the S3 Intelligent-Tiering storage class, Amazon S3 monitors objects’ acces
 **S3 Glacier Instant Retrieval
 -
 Works well for archived data that requires immediate access
-
 Can retrieve objects within a few milliseconds
-
 When you decide between the options for archival storage, consider how quickly you must retrieve the archived objects. You can retrieve objects stored in the S3 Glacier Instant Retrieval storage class within milliseconds, with the same performance as S3 Standard.
 
 **S3 Glacier Flexible Retrieval
