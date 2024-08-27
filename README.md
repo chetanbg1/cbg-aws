@@ -1,4 +1,49 @@
 # cbg-aws
+
+ client --> front end --> rest api --> database --> Analytical databases  --> Business Intelligence    /  Storage /   security   / Devops
+                             |             |                 |                        |                       |           |           |
+                             |             |                 |                        |                       |           |            --> CI/CD -> AWS pipeline, codebuild , codeDeploy
+                             |             |                 |                        |                       |           |            --> infrastructure - IaaS
+                             |             |                 |                        |                       |           |            --> observability 
+                             |             |                 |                        |                       |           |
+                             |             |                 |                        |                       |            --> as we are using the shared infrastructure security is important
+                             |             |                 |                        |                       |            --> control trafic to application is through -> VPC 
+                             |             |                 |                        |                       |            --> access control -> subnet 
+                             |             |                 |                        |                       |            --> communiction between datacenter-VPC over the internet -> VPN
+                             |             |                 |                        |                       |            --> direct connection/ communication -> Direct connect
+                             |             |                 |                        |                       |
+                                           |                 |                        |                        --> when we create EC2 instance / hard disk is created with it tp store the data -> EBS
+                                           |                 |                        |                        --> file share / can be share across instances -> EFS 
+                                           |                 |                        |                        --> object storage(key-value), stores objects/images/video/audio/file etc, which can be identified by key -> S3
+                                           |                 |                        |                                        used for static websites
+                                           |                 |                        |
+                             |             |                 |                         --> Quick sight 
+                             |             |                 |                         
+                             |             |                  --> business relational data analysis like -> Hadoop -> RedShift
+                            |             |                  --> huge amount of data is operated like data in bulk up to tera bytes
+                            |             |                  --> AWS provide data pipeline to transfer data from transactional DB to Analytical DB
+                            |             |
+                            |              --> OS -> Databasde runtime -> database
+                            |              --> high avaliblility 
+                            |              --> operations  
+                            |                     transactional operations
+                            |                      -> SQL / relational  ->RDS / Aurora
+                            |                      -> NoSQL -> DynamoDB
+                            |              --> scalable   
+                            |              --> recovery
+                            |              --> security
+                            |             
+                              --> load balancer --> distribute the load equally -> ELB
+                              --> runs on virtual machine / compute system --> where our application is hosted  -> EC2, ECS, AWS Lambda
+                              --> auto scaling --> increase the capacity whenever required -> EBS
+                              --> regions and zones  --> keeps the system running if one virtual machine fails we have VM in different regions and zones ->ASG
+                              --> queue, might have other application listening over the queue -> SQS (asynchronus communication)
+                              --> communication -> SNS
+
+
+ cloud front - used to distribute data across the world, to reducw the latency 
+  route53 - domain name service         
+
 Cloud - it represents a vast networs of servers, data storage, and services that are accessible over the internate rather than being localized on a physical device or network
 
 Computing - involves processing and managing information using computers, such as running application, storaing and retrieving data , performing calculations
@@ -358,33 +403,13 @@ An AWS service for serverless computing is AWS Lambda.
 
 AWS Lambda
 --
-AWS Lambda(opens in a new tab) is a service that lets you run code without needing to provision or manage servers. 
+AWS Lambda is a service that lets you run code without needing to provision or manage servers. 
 
 While using AWS Lambda, you pay only for the compute time that you consume. Charges apply only when your code is running. You can also run code for virtually any type of application or backend service, all with zero administration. 
 
 For example, a simple Lambda function might involve automatically resizing uploaded images to the AWS Cloud. In this case, the function triggers when uploading a new image. 
 
-How AWS Lambda works
 
-Process depicting how AWS Lambda works. Process described in number list in the text.
-1
-
-1
-You upload your code to Lambda. 
-
-2
-
-2
-You set your code to trigger from an event source, such as AWS services, mobile applications, or HTTP endpoints.
-
-3
-
-3
-Lambda runs your code only when triggered.
-
-4
-
-4
 You pay only for the compute time that you use. In the previous example of resizing images, you would pay only for the compute time that you use when uploading new images. Uploading the images triggers Lambda to run code for the image resizing function.
 
 In AWS, you can also build and run containerized applications.
@@ -402,40 +427,34 @@ One host with multiple containers
 Example of a container that includes apps, bins/libs, an operating system, and a server.
 Suppose that a company’s application developer has an environment on their computer that is different from the environment on the computers used by the IT operations staff. The developer wants to ensure that the application’s environment remains consistent regardless of deployment, so they use a containerized approach. This helps to reduce time spent debugging applications and diagnosing differences in computing environments.
 
-1
-2
-
-Step 2
 
 Tens of hosts with hundreds of containers
 Example of scaling up to tens of hosts with hundreds of containers.
 When running containerized applications, it’s important to consider scalability. Suppose that instead of a single host with multiple containers, you have to manage tens of hosts with hundreds of containers. Alternatively, you have to manage possibly hundreds of hosts with thousands of containers. At a large scale, imagine how much time it might take for you to monitor memory usage, security, logging, and so on.
 
-1
-2
-
 Summary
 Container orchestration services help you to deploy, manage, and scale your containerized applications. Next, you will learn about two services that provide container orchestration: Amazon Elastic Container Service and Amazon Elastic Kubernetes Service.
 
-START AGAIN
-1
-2
 
 Amazon Elastic Container Service (Amazon ECS)
 --
-Amazon Elastic Container Service (Amazon ECS)(opens in a new tab) is a highly scalable, high-performance container management system that enables you to run and scale containerized applications on AWS. 
+  normal application deployment process -->  virtual machine VM -> OS -> application runtime, eg java runtime -> code, configure env variables -->deployable unit (app code)
 
-Amazon ECS supports Docker containers. Docker(opens in a new tab) is a software platform that enables you to build, test, and deploy applications quickly. AWS supports the use of open-source Docker Community Edition and subscription-based Docker Enterprise Edition. With Amazon ECS, you can use API calls to launch and stop Docker-enabled applications.
+  docker does all of it in easy way 
+Amazon Elastic Container Service (Amazon ECS) is a highly scalable, high-performance container management system that enables you to run and scale containerized applications on AWS. 
+
+Amazon ECS supports Docker containers. Docker is a software platform that enables you to build, test, and deploy applications quickly. AWS supports the use of open-source Docker Community Edition and subscription-based Docker Enterprise Edition. With Amazon ECS, you can use API calls to launch and stop Docker-enabled applications.
 
 Amazon Elastic Kubernetes Service (Amazon EKS)
 --
 Amazon Elastic Kubernetes Service (Amazon EKS)(opens in a new tab) is a fully managed service that you can use to run Kubernetes on AWS. 
 
 Kubernetes(opens in a new tab) is open-source software that enables you to deploy and manage containerized applications at scale. A large community of volunteers maintains Kubernetes, and AWS actively works together with the Kubernetes community. As new features and functionalities release for Kubernetes applications, you can easily apply these updates to your applications managed by Amazon EKS.
+here we have to maintain the cluster - where we have the nodes conatining the microservices.
 
 AWS Fargate
 --
-AWS Fargate(opens in a new tab) is a serverless compute engine for containers. It works with both Amazon ECS and Amazon EKS. 
+AWS Fargate is a serverless compute engine for containers. It works with both Amazon ECS and Amazon EKS. 
 
 When using AWS Fargate, you do not need to provision or manage servers. AWS Fargate manages your server infrastructure for you. You can focus more on innovating and developing your applications, and you pay only for the resources that are required to run your containers.
 
@@ -793,7 +812,7 @@ In a key-value database, you can add or remove attributes from items in the tabl
 
 **Amazon DynamoDB
 -
-Amazon DynamoDB(opens in a new tab) is a key-value database service. It delivers single-digit millisecond performance at any scale.
+Amazon DynamoDB is a key-value database service. It delivers single-digit millisecond performance at any scale.
 DynamoDB is serverless, which means that you do not have to provision, patch, or manage servers. 
 
 You also do not have to install, maintain, or operate software.
