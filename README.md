@@ -36,7 +36,7 @@
                               --> load balancer --> distribute the load equally -> ELB
                               --> runs on virtual machine / compute system --> where our application is hosted  -> EC2, ECS, AWS Lambda
                               --> auto scaling --> increase the capacity whenever required -> EBS
-                              --> regions and zones  --> keeps the system running if one virtual machine fails we have VM in different regions and zones ->ASG
+                              --> regions and zones  --> keeps the system running if one virtual machine fails we have VM in different regions and zones ->ASG ()
                               --> queue, might have other application listening over the queue -> SQS (asynchronus communication)
                               --> communication -> SNS
 
@@ -51,18 +51,24 @@ Computing - involves processing and managing information using computers, such a
 Platform - is a foundation or environment that supports teh development and operations, includes tools, frameworks, service
 
 AWS -Amazon Web Services - 
-a big collection of computer servers and services that connected to internate and hosted ny Amazon
-flexible
+ a big collection of computer servers and services that connected to internet and hosted by Amazon
+ on demand resource provisioning , relese them back when we dont need them 
+ stop geussing capacity, speed and agility, go global, no need to maintain the data centers
+ 
 
 
 Amazon EC2 - 
 Elastic Compute Cloud - provides virtual servers known as instances in the cloud it allows you to easily create and manage virtual machines to run your applications or host web site
 
-Amazon S3 - simple Storage service  - enables to store and retrieve dataa such as file, images, videos over the internate, provide high durability, availablity and security
+Amazon S3 - simple Storage service  - enables to store and retrieve data such as tetx, binary, backup, archives, file, images, videos over the internate, provide high durability, availablity and security
+                                     store large object using key value pair, also called as object storage
+                                     provide rest api to access and modify object
+                                     unlimited storage, 99.99% - avalibility and 99.99999999999% - durability
+                                     objects replicated in single region across multiple avalibility zones
 
 Amazon RDS - Relational Database service - manages database service that simplifies the setup, operation and scaling of ralational datbase such as mysql,oracle or sql server. it takes care of admiistrative task  such as backups and software patching allowing you to focus on application
 
-Amazaon VPC - Virtual Private Cloud - allows us to create private network within the amazon cloud, provides isolation and security for resources ans enables us to define subnets , configure routing and controls network access using security groups and network ACLs
+Amazaon VPC - Virtual Private Cloud - allows us to create private network within the amazon cloud, provides isolation and security for resources and enables us to define subnets , configure routing and controls network access using security groups and network ACLs
 
 Amazon IAM - Identity Access Management - helps to manage access to AWS resources securely. it allows you to create and manage users, groups, and roles and assign fine-grained permissions to control who can access which resource
 
@@ -135,7 +141,10 @@ key-pair
 --
 password protected login credentials for the virtual machines that are used to prove our identity while connecting to EC2 instances 
 EC2 use s public key cryptography which is used to encrypt and decrypt the login information
-
+EC2 instance uses public key cryptograpy to protect login credentials
+key pair - public key and private key , public key is stored in EC2 instance
+ 
+    
 
 Pricing of EC2 - 
 --
@@ -250,6 +259,19 @@ Scalability involves beginning with only the resources you need and designing yo
 
 If you wanted the scaling process to happen automatically, which AWS service would you use? The AWS service that provides this functionality for Amazon EC2 instances is Amazon EC2 Auto Scaling.
 
+ EC2 instance type - choose hardware
+     optimized combination of compute(CPU,GPU) , memory, disk(storage) and networking for specific workload
+     m(m4,m5,m6) - general purpose. balance of computer, memory and networking
+     t(t2,t3,t3a) - Brustable performance instance (accumulate CPU credits when inactive) workloads with spikes: web servers, ddeveloper environments and small databases
+     c(c4,c5,c5n) - compute optimized, batch processing high performance computing
+     r(r4,r5,r5a,r5n) - Memory (RAM) optimized, memory caches and in-memory databases
+     i(i3,i2) - storage(I/O) optimized, NoSQL database and data warehousing
+     g(g3,g4) GPU Optimized, FP calculaation, graphics processig or video compression
+     t2.micro
+         t - instance family
+         2 - generation
+         micro - size  eg nono , micro , small
+     
 Amazon EC2 Auto Scaling
 --
 If you’ve tried to access a website that wouldn’t load and frequently timed out, the website might have received more requests than it was able to handle. This situation is similar to waiting in a long line at a coffee shop, when there is only one barista present to take orders from customers.
@@ -272,6 +294,7 @@ In the cloud, computing power is a programmatic resource, so you can take a more
 Suppose that you are preparing to launch an application on Amazon EC2 instances. When configuring the size of your Auto Scaling group, you might set the minimum number of Amazon EC2 instances at one. This means that at all times, there must be at least one Amazon EC2 instance running.
 
 Amazon EC2 instances scaling in and out as part of an Auto Scaling group.
+--
 When you create an Auto Scaling group, you can set the minimum number of Amazon EC2 instances. The minimum capacity is the number of Amazon EC2 instances that launch immediately after you have created the Auto Scaling group. In this example, the Auto Scaling group has a minimum capacity of one Amazon EC2 instance.
 
 Next, you can set the desired capacity at two Amazon EC2 instances even though your application needs a minimum of a single Amazon EC2 instance to run.
@@ -315,19 +338,32 @@ AMI Amazon Machine Image -
 its a virtual image used to create a virtual machine within an EC2 instance.
 AMI in EC2 is like snapshot or template of a virtual server.
 it include operating system, application and configuration
-we use AMI to create and launch new instances in teh cloud with the same setup as the original snapshot
+we use AMI to create and launch new instances in the cloud with the same setup as the original snapshot
 it is convenient way to replicate and share a pre-configured environment
 AMI has to created manually we can capture the current state(OS, application, configuration) of running EC2 instance and we manually create a private AMI
+AMI resources
+  Provided by AWS
+  Aws Market Place - online store for customized AMIs, per hour billing
+  Customized AMIs - created by you
+AMIs are stored in Amazon S3(region specific)
 an AMI can be shared
- -- choose teh AMI you want to  share
+ -- choose the AMI you want to  share
     modifiy permissions of AMI to make it shareable, you can modify these permissions through the AWS management console, AWS command Line Interface or AWS sdk
-    provide teh AWS account IDs of AWS accounts with whom you want to share the AMI
+    provide the AWS account IDs of AWS accounts with whom you want to share the AMI
     if you are sharing the AMI with another AWS account, teh owner of that account must accept the sharing invitation
 
+EC2 IP Address
+--
+   public ip address - are internate addressable
+   private ip address are internal to corporate networs
+   can not have two resources with same ip address
+   public ip address can be enable for EC2 instances in public subnet 
+   when we stop instance public address is lost 
+   
 Elastic IP - EIP
 --
 service provided by EC2 instance 
-it is basically a static IP address attached to an EC2 instance, this address is associated with your AWS account not eith an EC2 instance 
+it is basically a static IP address attached to an EC2 instance, this address is associated with your AWS account not with an EC2 instance 
 when EC2 is restared new dynamic IP address get genrated due this the original link is not available between the website and EC2 instance  - to overcome such situation an EIP or static IP address is used which does not change
 we can create 5 EIPs 
 
@@ -486,6 +522,16 @@ An Availability Zone
 -
 is a single data center or a group of data centers within a Region. Availability Zones are located tens of miles apart from each other. This is close enough to have low latency (the time between when content requested and received) between Availability Zones. However, if a disaster occurs in one part of the Region, they are distant enough to reduce the chance that multiple Availability Zones are affected.
 
+Amazon CloudFront - Content Delivery Network
+--
+   deliver content to global audience
+   AWS provide 200+ edge locations
+   provide high  availability and low latency
+   serve users from nearest edge location
+   if content is not available at edge location, it is retrieve from the origin server and cached
+
+   content sources- S3, EC2, ELB or external websites
+   use cases -  static web apps, 
 
 Edge locations
 -
@@ -531,9 +577,15 @@ AWS CloudFormation provisions your resources in a safe, repeatable manner, enabl
 ***
 Amazon Virtual Private Cloud (Amazon VPC)
 -
+our own isolated network in AWS cloud 
+network traffic within a VPC is isolated from from all the other AMAZON VPCs
+we can control all the traffic coming in and going out from a VPC
+it helps in -secure resource from unauthorized access
+              enables secure communication between resources
+              each VPC is created in a region
 Imagine the millions of customers who use AWS services. Also, imagine the millions of resources that these customers have created, such as Amazon EC2 instances. Without boundaries around all of these resources, network traffic would be able to flow between them unrestricted. 
 
-A networking service that you can use to establish boundaries around your AWS resources is Amazon Virtual Private Cloud (Amazon VPC)(opens in a new tab).
+A networking service that you can use to establish boundaries around your AWS resources is Amazon Virtual Private Cloud (Amazon VPC).
 
 Amazon VPC enables you to provision an isolated section of the AWS Cloud. In this isolated section, you can launch resources in a virtual network that you define. Within a virtual private cloud (VPC), you can organize your resources into subnets. A subnet is a section of a VPC that can contain resources such as Amazon EC2 instances.
 
@@ -613,6 +665,7 @@ If you have multiple Amazon EC2 instances within the same VPC, you can associate
 --
 Suppose that AnyCompany has a website hosted in the AWS Cloud. Customers enter the web address into their browser, and they are able to access the website. This happens because of Domain Name System (DNS) resolution. DNS resolution involves a customer DNS resolver communicating with a company DNS server.
 
+
 **Amazon Route 53
 --
 Amazon Route 53(opens in a new tab) is a DNS web service. It gives developers and businesses a reliable way to route end users to internet applications hosted in AWS. 
@@ -668,7 +721,7 @@ The data might be an image, video, text document, or any other type of file. Met
 
 **Amazon Simple Storage Service (Amazon S3)
 -
-Amazon Simple Storage Service (Amazon S3)(opens in a new tab) is a service that provides object-level storage. Amazon S3 stores data as objects in buckets.
+Amazon Simple Storage Service (Amazon S3) is a service that provides object-level storage. Amazon S3 stores data as objects in buckets.
 
 You can upload any type of file to Amazon S3, such as images, videos, text files, and so on. For example, you might use Amazon S3 to store backup files, media files for a website, or archived documents. Amazon S3 offers unlimited storage space. The maximum file size for an object in Amazon S3 is 5 TB.
 
@@ -676,14 +729,15 @@ When you upload a file to Amazon S3, you can set permissions to control visibili
 
 Amazon S3 storage classes
 
-With Amazon S3, you pay only for what you use. You can choose from a range of storage classes(opens in a new tab) to select a fit for your business and cost needs. When selecting an Amazon S3 storage class, consider these two factors:
+With Amazon S3, you pay only for what you use. You can choose from a range of storage classes to select a fit for your business and cost needs. When selecting an Amazon S3 storage class, consider these two factors:
 
 How often you plan to retrieve your data
 How available you need your data to be
 
-why S3 - Data Backup and Stroage  - secure backup of important files, ensuring data durability and accessibility
+why S3 - 
+Data Backup and Stroage  - secure backup of important files, ensuring data durability and accessibility
 Static website Hosting - - making it globally accessible
-Data Archiving - Archive and preserve data for ling term storage with cost efficiency 
+Data Archiving - Archive and preserve data for long term storage with cost efficiency 
 Content Distribution - distribute content globally 
 Data Transfer - facilitate secure data transfer between AWS services and region supporting seamless integration
 Data Analytics -large data set can analize using services like Amazon Athena
@@ -699,26 +753,26 @@ Events and Notification - set up event notifications to trigger actions or workf
 
 key terminologies of S3 -
 --
-Buckets - big folder , organize your data into buckets, much like orgnizing files into folders in computer
+Buckets - big folder , organize your data into buckets, much like orgnizing files into folders in computer, can create upto 100 buckets
 Objects - individual file stored within bucket , eg photos, vidios, documnets, or any digital file 
 key - unique identifiers for objets in buckets, each object has a key similar to a file path 
 
 Storage classes Avaible in S3
-**S3 Standard
+**S3 Standard - frequently access data
 -
 Designed for frequently accessed data 
 Stores data in a minimum of three Availability Zones
 Amazon S3 Standard provides high availability for objects. This makes it a good choice for a wide range of use cases, such as websites, content distribution, and data analytics. Amazon S3 Standard has a higher cost than other storage classes intended for infrequently accessed data and archival storage.
 low latency
 
-**S3 Standard-Infrequent Access (S3 Standard-IA)
+**S3 Standard-Infrequent Access (S3 Standard-IA) - long lived, infrequently access data
 -
 Ideal for infrequently accessed data
 Similar to Amazon S3 Standard but has a lower storage price and higher retrieval price
 Amazon S3 Standard-IA is ideal for data infrequently accessed but requires high availability when needed. Both Amazon S3 Standard and Amazon S3 Standard-IA store data in a minimum of three Availability Zones. Amazon S3 Standard-IA provides the same level of availability as Amazon S3 Standard but with a lower storage price and a higher retrieval price.
 low cost , 
 
-S3 One Zone-Infrequent Access (S3 One Zone-IA)
+S3 One Zone-Infrequent Access (S3 One Zone-IA) - long lived, infrequently access data, non-critical data
 -
 Stores data in a single Availability Zone
 Has a lower storage price than Amazon S3 Standard-IA
@@ -726,25 +780,25 @@ Compared to S3 Standard and S3 Standard-IA, which store data in a minimum of thr
 You want to save costs on storage.
 You can easily reproduce your data in the event of an Availability Zone failure.
 
-**S3 Intelligent-Tiering
+**S3 Intelligent-Tiering - long-lived data with changing or unknown access patterns
 -
 Ideal for data with unknown or changing access patterns
 Requires a small monthly monitoring and automation fee per object
 In the S3 Intelligent-Tiering storage class, Amazon S3 monitors objects’ access patterns. If you haven’t accessed an object for 30 consecutive days, Amazon S3 automatically moves it to the infrequent access tier, S3 Standard-IA. If you access an object in the infrequent access tier, Amazon S3 automatically moves it to the frequent access tier, S3 Standard.
 
-**S3 Glacier Instant Retrieval
+**S3 Glacier Instant Retrieval  - archive data with retrieval tiime ranging from minutes to hours
 -
 Works well for archived data that requires immediate access
 Can retrieve objects within a few milliseconds
 When you decide between the options for archival storage, consider how quickly you must retrieve the archived objects. You can retrieve objects stored in the S3 Glacier Instant Retrieval storage class within milliseconds, with the same performance as S3 Standard.
 
-**S3 Glacier Flexible Retrieval
+**S3 Glacier Flexible Retrieval  - 
 -
 Low-cost storage designed for data archiving
 Able to retrieve objects within a few minutes to hours
 S3 Glacier Flexible Retrieval is a low-cost storage class that is ideal for data archiving. For example, you might use this storage class to store archived customer records or older photos and video files. You can retrieve your data from S3 Glacier Flexible Retrieval from 1 minute to 12 hours.
 
-**S3 Glacier Deep Archive
+**S3 Glacier Deep Archive  - archive data that rarely, if ever needed to be access with retrieval times in hours
 -
 Lowest-cost object storage class ideal for archiving
 Able to retrieve objects within 12 hours
@@ -776,10 +830,19 @@ The duplicate storage enables you to access data concurrently from all the Avail
 In a relational database, data is stored in a way that relates it to other pieces of data. 
 Relational databases use structured query language (SQL) to store and query data. This approach allows data to be stored in an easily understandable, consistent, and scalable way. For example, the coffee shop owners can write a SQL query to identify all the customers whose most frequently purchased drink is a medium latte.
 
-**Amazon Relational Database Service
+**Amazon Relational Database Service (RDS)
 -
-Amazon Relational Database Service (Amazon RDS)(opens in a new tab) is a service that enables you to run relational databases in the AWS Cloud.
 
+relational database for transactional processes
+Amazon Relational Database Service (Amazon RDS) is a service that enables you to run relational databases in the AWS Cloud.
+manages setup, backup, scaling, replication and patching of your relational databases
+features
+    multi AZ deployment
+    read replicas
+    storage auto-scaling
+    automated backups
+    manual snapshot - copy 
+    
 Amazon RDS is a managed service that automates tasks such as hardware provisioning, database setup, patching, and backups. With these capabilities, you can spend less time completing administrative tasks and more time using data to innovate your applications. You can integrate Amazon RDS with other services to fulfill your business and operational needs, such as using AWS Lambda to query your database from a serverless application.
 
 Amazon RDS provides a number of different security options. Many Amazon RDS database engines offer encryption at rest (protecting data while it is stored) and encryption in transit (protecting data while it is being sent and received).
@@ -794,14 +857,17 @@ MySQL
 MariaDB
 Oracle Database
 Microsoft SQL Server
+
+
 Amazon Aurora
 
-Amazon Aurora(opens in a new tab) is an enterprise-class relational database. It is compatible with MySQL and PostgreSQL relational databases. It is up to five times faster than standard MySQL databases and up to three times faster than standard PostgreSQL databases.
+Amazon Aurora is an enterprise-class relational database. It is compatible with MySQL and PostgreSQL relational databases. It is up to five times faster than standard MySQL databases and up to three times faster than standard PostgreSQL databases.
 
 Amazon Aurora helps to reduce your database costs by reducing unnecessary input/output (I/O) operations, while ensuring that your database resources remain reliable and available. 
 
 Consider Amazon Aurora if your workloads require high availability. It replicates six copies of your data across three Availability Zones and continuously backs up your data to Amazon S3.
 
+EMR - manages hadoop 
 **Nonrelational databases
 -
 In a nonrelational database, you create tables. A table is a place where you can store and query data.
@@ -822,7 +888,8 @@ This makes it a suitable choice for use cases that require high performance whil
 
 **Amazon Redshift
 -
-Amazon Redshift(opens in a new tab) is a data warehousing service that you can use for big data analytics. It offers the ability to collect data from many sources and helps you to understand relationships and trends across your data.
+is relational databse for online analytical proccesses(batch processing)
+Amazon Redshift is a data warehousing service that you can use for big data analytics. It offers the ability to collect data from many sources and helps you to understand relationships and trends across your data.
 
 
 **AWS Database Migration Service (AWS DMS)
@@ -1477,9 +1544,12 @@ AWS Snowcone(opens in a new tab)
 is a small, rugged, and secure edge computing and data transfer device. 
 It features 2 CPUs, 4 GB of memory, and up to 14 TB of usable storage.
 
-AWS Snowball(opens in a new tab) offers two types of devices:
+AWS Snowball 
 -
+    transfer terabyte or petabytes of data from on-premises
 
+
+offers two types of devices:
 Snowball Edge Storage Optimized 
 -
 devices are well suited for large-scale data migrations and recurring transfer workflows, in addition to local computing with higher capacity needs. 
@@ -1492,7 +1562,7 @@ provides powerful computing resources for use cases such as machine learning, fu
 Storage: 80-TB usable HDD capacity for Amazon S3 compatible object storage or Amazon EBS compatible block volumes and 28 TB of usable NVMe SSD capacity for Amazon EBS compatible block volumes. 
 Compute: 104 vCPUs, 416 GiB of memory, and an optional NVIDIA Tesla V100 GPU. Devices run Amazon EC2 sbe-c and sbe-g instances, which are equivalent to C5, M5a, G3, and P3 instances.
 
-AWS Snowmobile(opens in a new tab)
+AWS Snowmobile
 -
 is an exabyte-scale data transfer service used to move large amounts of data to AWS. 
 You can transfer up to 100 petabytes of data per Snowmobile, a 45-foot long ruggedized shipping container, pulled by a semi trailer truck.
@@ -1625,3 +1695,14 @@ A benefit of cloud computing is the ability to focus less on these tasks and mor
 Go global in minutes.
 -
 The AWS Cloud global footprint enables you to quickly deploy applications to customers around the world, while providing them with low latency.
+
+
+What are key components of AWS?
+  cloud watch - used to monitor AWS resources
+  Elastic Block Storage - used as persistent storage volumes
+  Route 53 - A DNS web service
+  Identity Access Management - used as identity management gor AWS account 
+  Simple Storage Service - used to store and retrieve the bulk amount of data at any time on the web
+  Elastic Compute Cloud - used to provide on demand computing resources for hosting application
+How can we send a request to amazon S3?
+  S3 used REST service , rest api, AWS SDK, AWS management console
