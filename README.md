@@ -483,9 +483,9 @@ Amazon ECS supports Docker containers. Docker is a software platform that enable
 
 Amazon Elastic Kubernetes Service (Amazon EKS)
 --
-Amazon Elastic Kubernetes Service (Amazon EKS)(opens in a new tab) is a fully managed service that you can use to run Kubernetes on AWS. 
+Amazon Elastic Kubernetes Service (Amazon EKS) is a fully managed service that you can use to run Kubernetes on AWS. 
 
-Kubernetes(opens in a new tab) is open-source software that enables you to deploy and manage containerized applications at scale. A large community of volunteers maintains Kubernetes, and AWS actively works together with the Kubernetes community. As new features and functionalities release for Kubernetes applications, you can easily apply these updates to your applications managed by Amazon EKS.
+Kubernetes is open-source software that enables you to deploy and manage containerized applications at scale. A large community of volunteers maintains Kubernetes, and AWS actively works together with the Kubernetes community. As new features and functionalities release for Kubernetes applications, you can easily apply these updates to your applications managed by Amazon EKS.
 here we have to maintain the cluster - where we have the nodes conatining the microservices.
 
 AWS Fargate
@@ -612,18 +612,11 @@ A virtual private gateway enables you to establish a virtual private network (VP
 
 AWS Direct Connect
 --
-AWS Direct Connect(opens in a new tab) is a service that lets you to establish a dedicated private connection between your data center and a VPC.  
-
-Suppose that there is an apartment building with a hallway directly linking the building to the coffee shop. Only the residents of the apartment building can travel through this hallway. 
-
-This private hallway provides the same type of dedicated connection as AWS Direct Connect. Residents are able to get into the coffee shop without needing to use the public road shared with other customers. 
-
+AWS Direct Connect is a service that lets you to establish a dedicated private connection between your data center and a VPC.  
 
 A corporate data center routes network traffic to an AWS Direct Connect location. That traffic is then routed to a VPC through a virtual private gateway. All network traffic between the corporate data center and VPC flows through this dedicated private connection.
 
 The private connection that AWS Direct Connect provides helps you to reduce network costs and increase the amount of bandwidth that can travel through your network.
-
-
 
 **Subnets
 -
@@ -668,7 +661,7 @@ Suppose that AnyCompany has a website hosted in the AWS Cloud. Customers enter t
 
 **Amazon Route 53
 --
-Amazon Route 53(opens in a new tab) is a DNS web service. It gives developers and businesses a reliable way to route end users to internet applications hosted in AWS. 
+Amazon Route 53 is a DNS web service. It gives developers and businesses a reliable way to route end users to internet applications hosted in AWS. 
 
 Amazon Route 53 connects user requests to infrastructure running in AWS (such as Amazon EC2 instances and load balancers). It can route users to infrastructure outside of AWS.
 
@@ -690,10 +683,7 @@ When a packet response for that request returns to the instance, the security gr
 ** DNS 
 Translating a domain name to an IP address
 The correct response option is Translating a domain name to an IP address.
-
 For example, if you want to visit AnyCompany’s website, you enter the domain name into your PC and this request is sent to a DNS server. Next, the DNS server asks the web server for the IP address that corresponds to AnyCompany’s website. The web server responds by providing the IP address for AnyCompany’s website, 192.0.2.0.
-
-
 
 Storage service
 -
@@ -704,14 +694,15 @@ Block-level storage volumes behave like physical hard drives.
 An instance store(opens in a new tab) provides temporary block-level storage for an Amazon EC2 instance. An instance store is disk storage that is physically attached to the host computer for an EC2 instance, and therefore has the same lifespan as the instance. When the instance is terminated, you lose any data in the instance store.
 
 
-**Amazon Elastic Block Store (Amazon EBS)(opens in a new tab) 
+**Amazon Elastic Block Store (Amazon EBS)
+--
 is a service that provides block-level storage volumes that you can use with Amazon EC2 instances. If you stop or terminate an Amazon EC2 instance, all the data on the attached EBS volume remains available.
 
 To create an EBS volume, you define the configuration (such as volume size and type) and provision it. After you create an EBS volume, it can attach to an Amazon EC2 instance.
 
 Because EBS volumes are for data that needs to persist, it’s important to back up the data. You can take incremental backups of EBS volumes by creating Amazon EBS snapshots.
 
-An EBS snapshot(opens in a new tab) is an incremental backup. This means that the first backup taken of a volume copies all the data. For subsequent backups, only the blocks of data that have changed since the most recent snapshot are saved. 
+An EBS snapshot is an incremental backup. This means that the first backup taken of a volume copies all the data. For subsequent backups, only the blocks of data that have changed since the most recent snapshot are saved. 
 
 Incremental backups are different from full backups, in which all the data in a storage volume copies each time a backup occurs. The full backup includes data that has not changed since the most recent backup.
 
@@ -894,7 +885,7 @@ Amazon Redshift is a data warehousing service that you can use for big data anal
 
 **AWS Database Migration Service (AWS DMS)
 -
-AWS Database Migration Service (AWS DMS)(opens in a new tab) enables you to migrate relational databases, nonrelational databases, and other types of data stores.
+AWS Database Migration Service (AWS DMS) enables you to migrate relational databases, nonrelational databases, and other types of data stores.
 
 With AWS DMS, you move data between a source database and a target database. The source and target databases(opens in a new tab) can be of the same type or different types. During the migration, your source database remains operational, reducing downtime for any applications that rely on the database. 
 
@@ -1159,7 +1150,7 @@ CloudWatch uses metrics(opens in a new tab) to represent the data points for you
 
 CloudWatch alarms
 --
-With CloudWatch, you can create alarms(opens in a new tab) that automatically perform actions if the value of your metric has gone above or below a predefined threshold. 
+With CloudWatch, you can create alarms that automatically perform actions if the value of your metric has gone above or below a predefined threshold. 
 
 For example, suppose that your company’s developers use Amazon EC2 instances for application development or testing purposes. If the developers occasionally forget to stop the instances, the instances will continue to run and incur charges. 
 
@@ -1532,14 +1523,12 @@ Retiring is the process of removing applications that are no longer needed.
 
 AWS Snow Family members
 --
-The AWS Snow Family(opens in a new tab) is a collection of physical devices that help to physically transport up to exabytes of data into and out of AWS. 
+The AWS Snow Family is a collection of physical devices that help to physically transport up to exabytes of data into and out of AWS. 
 
 AWS Snow Family is composed of AWS Snowcone, AWS Snowball, and AWS Snowmobile. 
-
-
 These devices offer different capacity points, and most include built-in computing capabilities. AWS owns and manages the Snow Family devices and integrates with AWS security, monitoring, storage management, and computing capabilities.  
 
-AWS Snowcone(opens in a new tab)
+AWS Snowcone
 -
 is a small, rugged, and secure edge computing and data transfer device. 
 It features 2 CPUs, 4 GB of memory, and up to 14 TB of usable storage.
