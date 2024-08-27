@@ -1,25 +1,25 @@
 # cbg-aws
 
  client --> front end --> rest api --> database --> Analytical databases  --> Business Intelligence    /  Storage /   security   / Devops
-                             |             |                 |                        |                       |           |           |
-                             |             |                 |                        |                       |           |            --> CI/CD -> AWS pipeline, codebuild , codeDeploy
-                             |             |                 |                        |                       |           |            --> infrastructure - IaaS
-                             |             |                 |                        |                       |           |            --> observability 
-                             |             |                 |                        |                       |           |
-                             |             |                 |                        |                       |            --> as we are using the shared infrastructure security is important
-                             |             |                 |                        |                       |            --> control trafic to application is through -> VPC 
-                             |             |                 |                        |                       |            --> access control -> subnet 
-                             |             |                 |                        |                       |            --> communiction between datacenter-VPC over the internet -> VPN
-                             |             |                 |                        |                       |            --> direct connection/ communication -> Direct connect
-                             |             |                 |                        |                       |
-                                           |                 |                        |                        --> when we create EC2 instance / hard disk is created with it tp store the data -> EBS
-                                           |                 |                        |                        --> file share / can be share across instances -> EFS 
-                                           |                 |                        |                        --> object storage(key-value), stores objects/images/video/audio/file etc, which can be identified by key -> S3
-                                           |                 |                        |                                        used for static websites
-                                           |                 |                        |
-                             |             |                 |                         --> Quick sight 
-                             |             |                 |                         
-                             |             |                  --> business relational data analysis like -> Hadoop -> RedShift
+                            |             |                 |                        |                       |           |           |
+                            |             |                 |                        |                       |           |            --> CI/CD -> AWS pipeline, codebuild , codeDeploy
+                            |             |                 |                        |                       |           |            --> infrastructure - IaaS
+                            |             |                 |                        |                       |           |            --> observability 
+                            |             |                 |                        |                       |           |
+                            |             |                 |                        |                       |            --> as we are using the shared infrastructure security is important
+                            |             |                 |                        |                       |            --> control trafic to application is through -> VPC 
+                            |             |                 |                        |                       |            --> access control -> subnet 
+                            |             |                 |                        |                       |            --> communiction between datacenter-VPC over the internet -> VPN
+                            |             |                 |                        |                       |            --> direct connection/ communication -> Direct connect
+                            |             |                 |                        |                       |
+                            |             |                 |                        |                        --> when we create EC2 instance / hard disk is created with it tp store the data -> EBS
+                            |             |                 |                        |                        --> file share / can be share across instances -> EFS 
+                            |             |                 |                        |                        --> object storage(key-value), stores objects/images/video/audio/file etc, which can be identified by key -> S3
+                            |             |                 |                        |                                        used for static websites
+                            |             |                 |                        |
+                            |             |                 |                         --> Quick sight 
+                            |             |                 |                         
+                            |             |                  --> business relational data analysis like -> Hadoop -> RedShift
                             |             |                  --> huge amount of data is operated like data in bulk up to tera bytes
                             |             |                  --> AWS provide data pipeline to transfer data from transactional DB to Analytical DB
                             |             |
