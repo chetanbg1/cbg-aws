@@ -1695,3 +1695,126 @@ What are key components of AWS?
   Elastic Compute Cloud - used to provide on demand computing resources for hosting application
 How can we send a request to amazon S3?
   S3 used REST service , rest api, AWS SDK, AWS management console
+
+
+
+## Jenkins
+
+Continuous Integration 
+  the automated building, testiing, and deplying of application on every new commit
+  automating as well as integrating diff stages of an application building testing and all
+
+Continuous delivery
+  a state where apllication is always ready to be deplyed, a manual step is required to actually deploy the application
+
+Continuous Deployment 
+  same as continuous delivery but everything is automated no manual effort needed
+
+
+what is jwnkins and its primary use ?
+ open source automation server used for continuous integration and continuous delivery
+ it automates the process of building, testing and deploying software application 
+ it is suite of plugins that allows team to define their software delivery process as code 
+ it enables the creation of complex workflows, including build, test, and deployment stages which can be version controlled alongside application code
+ 
+features 
+  -can be integrated with multiple tools - like kubernete, docker,nexus, sonar 
+   has tons of plugins used for diff tasks - way to integrate diff tool with jenkins
+   support multiple types of pipelines - freestyle , maven base , declarative pipeline , scripted 
+   easy to use and automate tasks - code can be easliy genrated in the form of template 
+   free to use and opensource
+   
+steps 
+ - check out the repository -> compilation -> unit test cases -> security scanning -> sonar code quality checks -> build app(jar/ war) -> push to nexus -> docker- to build docker image -> deployment to server 
+what is jenkin pipeline
+
+
+how to define jenkins pipeline
+ pupeline can be defined using a jenkinsfile, which is a text file written in Groovy syntax
+ this jenkinsfile describe the stages steps and configurations of the pipeline, allowing for repeatable software delivery process
+
+multibranch pipeline 
+  a pipeline which works with diff branches of a pipeline 
+
+  new item -> give name -> select multi branch pipeline -> add branch source (git) -> add get repository -> give credentials -> seperate pipelines will be created on the basis of jenkins file of each branch 
+
+ how to create declarative pipeline
+   new item -> give name -> select pipeline -> pipeline defination -> pipeline script -> select sample pipeline(hello world) -> click on pipeline syntax -> select git -> give info -> click on genrate pipeline script -> copy that and paste it in script -> for next step copy the stage -> paste it -> next step is compilation -> if need the one more stage do the same ->apply 
+
+Scripted pipeline 
+  uses a groovy based scripting language to define pipeline logic, providing more power and flexibility but requires more coding 
+
+ Declarative pipeline
+   simpler and more structured syntax for defining pipelines, making them easier to read, write and maintain
+
+jenkins agent / node
+   is a machine (physical or virtual) that executes a tasks as part of a jenkins build proccess
+   Agents can be run on the same machine as Jenkins server(master) or on remote machines
+   they communicates with the jenkins master to recieve build instructions and report result 
+   Jenkins master/slave architecture allows you to distribute the workload of executing Jenkins jobs across multiple nodes. The master node is responsible for managing the Jenkins system, storing configurations, and handling user interactions through the web interface.
+   
+   jenkins server --> jenkins node --> task execution(build automation)
+                  --> jenkins node --> task execution(testing automation)
+                  --> jenkins node --> task execution(deployment automation)
+
+Jenkins Plugins
+   plugins extend the functionality of jenkins automation server by providing additional features, integrations and capabilities.
+   plugin used for supporting the various tasks such as source code management, build tools, testing frameworks, deployment platforms, and notification system
+   eg - Maven - building tool, sonar scanner - code quality check, nexus - buling and pushing artifact to nexus server, kubernetes - deplyment of app on kubernetes, SSH credentials - , git - help to connect to git repository, owarsp dependency checks -  security tool 
+
+
+Jenkin process 
+  changes are pushed to git repo  -> once jenkins informed --> it automatically triggers the pipeline 
+  fectch code from git -> create local copy of it -> compile the sourced code -> perform unit test cases -> build application -> generate artifact(jar/ war) -> docker steps(images) -> deployment on server
+
+
+ git integration
+   free style job -> source code management -> select git -> insert URL (public source code do not credentials) -> insert branch 
+
+install third party plugin 
+   install the tool 
+   configure the tool in global tool configuration
+
+   manage jenkins -> manage plugins -> available plugins -> search (eg -sonar) once install go to global tool configuration -> search the tool -> click on add -> provide requored info -> apply 
+
+ default env variables 
+   - $ JOB_NAME - name of the job
+   - $NODE_NAME - slave machine 
+   - $WORKSPACE
+   - $BUILD_URL
+   - $JENKINS_URL
+   
+ 
+ how to secure jenkins
+    can be secure by enabling authentication mechanism like LDAP, Active Directory or OAuth 
+    access  control can be configured using roll base security 
+    all the jenkins connection can be encrypted using HTTPs and security plugins are also available 
+
+  Jenkins Job DSL (Domain Specific Language)
+    is plugin that allows users to define jenkins jobs programmatically using groovy based DSL
+    enables the creation of jobs, views and other configuration dynamically which can be version controlled
+
+  Jenkins file
+    also called as pipeline as code
+    usually stored in repository
+    contains the pipeline script
+    text file written in groovy sysntax that defines configuration of jenkins pipeline 
+    it discribes the stages, steps, post build actions of the pipeline,version control
+
+  Jenkins build triggers are mechanism that initiate a build job based on specific events or conditions.
+  trigger can be configured to start a build periodically when changes are pushed to version control system or when other build jobs completed
+
+  how to automate deployment using jenkins
+    can be done using jenkins pipeline or freestyle project with appropriate build steps and post-build actions
+
+  jenkin build artifacts 
+     are files generated during the build process, such as compiled binaries, test results, documentation, and archives 
+     are stored on the jenkins server or external artifact repositories and can be accessed, archived, published or used in downstream jobs for further processing or deployment
+
+  jenkins pipeline stages 
+    stages represent distinct phases or steps in a software delivery process, such as build, test, deploy and notify 
+    each stage can contain one or more build steps, tests or actions and can be configured to run sequenctially, in parallel or conditionally based on specific criteria
+
+  troubleshoot jenkin failure
+     by using build logs, console output ar error messages.
+     
