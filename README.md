@@ -12,7 +12,7 @@
                             |             |                 |                        |                       |            --> communiction between datacenter-VPC over the internet -> VPN
                             |             |                 |                        |                       |            --> direct connection/ communication -> Direct connect
                             |             |                 |                        |                       |
-                            |             |                 |                        |                        --> when we create EC2 instance / hard disk is created with it tp store the data -> EBS
+                            |             |                 |                        |                        --> when we create EC2 instance / hard disk is created with it to store the data -> EBS
                             |             |                 |                        |                        --> file share / can be share across instances -> EFS 
                             |             |                 |                        |                        --> object storage(key-value), stores objects/images/video/audio/file etc, which can be identified by key -> S3
                             |             |                 |                        |                                        used for static websites
@@ -48,7 +48,7 @@ Cloud - it represents a vast networs of servers, data storage, and services that
 
 Computing - involves processing and managing information using computers, such as running application, storaing and retrieving data , performing calculations
 
-Platform - is a foundation or environment that supports teh development and operations, includes tools, frameworks, service
+Platform - is a foundation or environment that supports the development and operations, includes tools, frameworks, service
 
 AWS -Amazon Web Services - 
  a big collection of computer servers and services that connected to internet and hosted by Amazon
@@ -60,26 +60,23 @@ AWS -Amazon Web Services -
 Amazon EC2 - 
 Elastic Compute Cloud - provides virtual servers known as instances in the cloud it allows you to easily create and manage virtual machines to run your applications or host web site
 
-Amazon S3 - simple Storage service  - enables to store and retrieve data such as tetx, binary, backup, archives, file, images, videos over the internate, provide high durability, availablity and security
+Amazon S3 - simple Storage service  - enables to store and retrieve data such as text, binary, backup, archives, file, images, videos over the internate, provide high durability, availablity and security
                                      store large object using key value pair, also called as object storage
                                      provide rest api to access and modify object
                                      unlimited storage, 99.99% - avalibility and 99.99999999999% - durability
                                      objects replicated in single region across multiple avalibility zones
 
-Amazon RDS - Relational Database service - manages database service that simplifies the setup, operation and scaling of ralational datbase such as mysql,oracle or sql server. it takes care of admiistrative task  such as backups and software patching allowing you to focus on application
+Amazon RDS - Relational Database service - manages database service that simplifies the setup, operation and scaling of ralational datbase such as mysql,oracle or sql server. it takes care of admistrative task  such as backups and software patching allowing you to focus on application
 
-Amazaon VPC - Virtual Private Cloud - allows us to create private network within the amazon cloud, provides isolation and security for resources and enables us to define subnets , configure routing and controls network access using security groups and network ACLs
+Amazaon VPC - Virtual Private Cloud - allows us to create private network within the amazon cloud, provides isolation and security for resources and enables us to define subnets, configure routing and controls network access using security groups and network ACLs
 
 Amazon IAM - Identity Access Management - helps to manage access to AWS resources securely. it allows you to create and manage users, groups, and roles and assign fine-grained permissions to control who can access which resource
 
-AWS Lambda - lambda is serverless  computing service that enables you to run your code without provisioning or managing servers. we can upload the code andd lambda automatically handles teh infrastructure and scales it based on incoming request 
+AWS Lambda - lambda is serverless  computing service that enables you to run your code without provisioning or managing servers. we can upload the code and lambda automatically handles the infrastructure and scales it based on incoming request 
 
 Amazon SNS - Simple Notification Service - allows us to send notifications and massages to subscribed endpoints or clients. it supportes various delivery protocols, including emails, SMS, mobile push notifications, and HTTP/HTTPS endpoints
 
 Amazon cloudWatch - is a monitoring and observability service that provides insights into your AWS resources and applications. it collects and tracks metrics, monitors logs files, sets alarms and generates visualizations to help you monitor and troubleshoot your infrastucture 
-
-
-
 
 Deployment models for cloud computing
 --
@@ -93,7 +90,7 @@ private - used by one individual
 hybride - combination of public + private 
 
 services -
-Infrastucute as service IaaS - cloud service provider manages infrastucture for you, user has access through API or dashboard , provider takes care of hardware , netwirking hard divices and data storage and service
+Infrastucute as service IaaS - cloud service provider manages infrastucture for you, user has access through API or dashboard , provider takes care of hardware , networking hard divices and data storage and service
 Platform as Service PaaS - hardware and application software platform these are provided and manage by outside cloud service providers
 Software as Service SaaS - delivers software as a service, apps are web or mobile applications 
 
@@ -103,7 +100,7 @@ each region has multiple isolated zone known as availability zone
 
 Q -geo-targeting in cloudfront?
 --
-we can detect the country from where end users are requesting ourcontnt this information can be pass to an origin server by the Amazon cloudFront it is sent to new HTTP header based on different countries  we can genrate different content from the different version of same contnent 
+we can detect the country from where end users are requesting our content this information can be pass to an origin server by the Amazon cloudFront it is sent to new HTTP header based on different countries  we can genrate different content from the different version of same contnent 
 these versions can be cached at diff locations that are closer to the end user
 
 Q - What services can be used for developing centralize logging solution?
@@ -150,7 +147,7 @@ Pricing of EC2 -
 --
 On demand Instance -
  what it is - renting a computer on go
- how it works -quickly get a virtual server whenever we need it. just pay for hours nad seconds you use.
+ how it works -quickly get a virtual server whenever we need it. just pay for hours and seconds you use.
 Reserved Instance -
  what it is - getting a subsription for a specific type of computer
  how it works - we commit to use certain type of computer for 1 or 3 years,  we pay upfront in return we get big discount 
@@ -165,7 +162,7 @@ Dedicated Host -
  
 Amazon EC2 instance types
 --
-Amazon EC2 instance types(opens in a new tab) are optimized for different tasks. When selecting an instance type, consider the specific needs of your workloads and applications. This might include requirements for compute, memory, or storage capabilities.
+Amazon EC2 instance types are optimized for different tasks. When selecting an instance type, consider the specific needs of your workloads and applications. This might include requirements for compute, memory, or storage capabilities.
 
 General purpose instances
 -
@@ -284,7 +281,6 @@ Within Amazon EC2 Auto Scaling, you can use two approaches: dynamic scaling and 
 Dynamic scaling responds to changing demand. 
 Predictive scaling automatically schedules the right number of Amazon EC2 instances based on predicted demand.
 
-
 To scale faster, you can use dynamic scaling and predictive scaling together.
 
 Example: Amazon EC2 Auto Scaling
@@ -354,7 +350,7 @@ an AMI can be shared
 
 EC2 IP Address
 --
-   public ip address - are internate addressable
+   public ip address - are internet addressable
    private ip address are internal to corporate networs
    can not have two resources with same ip address
    public ip address can be enable for EC2 instances in public subnet 
@@ -373,7 +369,6 @@ terminating EC2 - means removing the instance from the AWS acconut
 
 Monolithic applications and microservices
 --
-Four rectangles close together in a larger square to indicate tightly coupled components as seen in monolithic applications.
 Applications are made of multiple components. The components communicate with each other to transmit data, fulfill requests, and keep the application running. 
 
 Suppose that you have an application with tightly coupled components. These components might include databases, servers, the user interface, business logic, and so on. This type of architecture can be considered a monolithic application. 
@@ -382,7 +377,6 @@ In this approach to application architecture, if a single component fails, other
 
 To help maintain application availability when a single component fails, you can design your application through a microservices approach.
 
-Four rectangles with distance between them connected by lines in a rectangle pattern to indicate loosely coupled components.
 In a microservices approach, application components are loosely coupled. In this case, if a single component fails, the other components continue to work because they are communicating with each other. The loose coupling prevents the entire application from failing. 
 
 When designing applications on AWS, you can take a microservices approach with services and components that fulfill different functions. Two services facilitate application integration: Amazon Simple Notification Service (Amazon SNS) and Amazon Simple Queue Service (Amazon SQS).
@@ -392,13 +386,6 @@ Amazon Simple Notification Service (Amazon SNS)
 Amazon Simple Notification Service (Amazon SNS) is a publish/subscribe service. Using Amazon SNS topics, a publisher publishes messages to subscribers. This is similar to the coffee shop; the cashier provides coffee orders to the barista who makes the drinks.
 
 In Amazon SNS, subscribers can be web servers, email addresses, AWS Lambda functions, or several other options. 
-
-In the next lesson, you will learn more about AWS Lambda.
-
-To review two examples of how to use Amazon SNS, choose the arrow buttons to display each one.
-
-
-Step 1
 
 Publishing updates from a single topic
 A single topic being published to subscribers.
@@ -423,7 +410,6 @@ Although these examples from the coffee shop involve subscribers who are people,
 Amazon Simple Queue Service (Amazon SQS)    
 
 Amazon Simple Queue Service (Amazon SQS) is a message queuing service. 
-
 Using Amazon SQS, you can send, store, and receive messages between software components, without losing messages or requiring other services to be available. In Amazon SQS, an application sends messages into a queue. A user or service retrieves a message from the queue, processes it, and then deletes it from the queue.
 
 
@@ -661,7 +647,7 @@ Suppose that AnyCompany has a website hosted in the AWS Cloud. Customers enter t
 
 **Amazon Route 53
 --
-Amazon Route 53 is a DNS web service. It gives developers and businesses a reliable way to route end users to internet applications hosted in AWS. 
+Amazon Route 53 is a DNS web service. It gives developers and businesses a reliable way to route and users to internet applications hosted in AWS. 
 
 Amazon Route 53 connects user requests to infrastructure running in AWS (such as Amazon EC2 instances and load balancers). It can route users to infrastructure outside of AWS.
 
@@ -1701,7 +1687,7 @@ How can we send a request to amazon S3?
 ## Jenkins
 
 Continuous Integration 
-  the automated building, testiing, and deplying of application on every new commit
+  the automated building, testing, and deplying of application on every new commit
   automating as well as integrating diff stages of an application building testing and all
 
 Continuous delivery
@@ -1726,8 +1712,6 @@ features
    
 steps 
  - check out the repository -> compilation -> unit test cases -> security scanning -> sonar code quality checks -> build app(jar/ war) -> push to nexus -> docker- to build docker image -> deployment to server 
-what is jenkin pipeline
-
 
 how to define jenkins pipeline
  pupeline can be defined using a jenkinsfile, which is a text file written in Groovy syntax
